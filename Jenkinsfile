@@ -34,7 +34,8 @@ pipeline {
                 echo 'Starting to build docker image'
 
                 script {
-                    def customImage = docker.build("my-image:${env.BUILD_ID}")
+                    /*def customImage = docker.build("my-image:${env.BUILD_ID}")*/
+                    sh docker build -f Dockerfile -t spring-boot-rest
                 }
             }
         }
