@@ -10,6 +10,7 @@ node {
     stage('Build image') {
        
           app = docker.build("spring-boot-rest")
+          kubectl expose deployment spring-boot-rest --type=LoadBalancer --name=spring-boot-rest-service --port=8090 --target-port=8080
         /*sh docker build -f Dockerfile -t spring-boot-rest*/
         
     }
