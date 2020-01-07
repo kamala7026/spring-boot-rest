@@ -25,7 +25,9 @@ pipeline {
     agent any
     stages {
         stage('Clone repository') {
+            steps {
             checkout scm
+            }
         }
         stage('Build image') {
             steps {
@@ -33,7 +35,6 @@ pipeline {
 
                 script {
                     def customImage = docker.build("my-image:${env.BUILD_ID}")
-                    customImage.push()
                 }
             }
         }
