@@ -9,8 +9,8 @@ node {
 
     stage('Build image') {
        
-        /*app = docker.build("spring-boot-rest:${env.BUILD_ID}")*/
-        sh docker build -f Dockerfile -t spring-boot-rest
+          app = docker.build("spring-boot-rest:${env.BUILD_ID}")
+        /*sh docker build -f Dockerfile -t spring-boot-rest*/
     }
 
     stage('Test image') {
