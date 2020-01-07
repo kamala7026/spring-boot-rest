@@ -1,4 +1,4 @@
-node ("docker") {
+node {
     def app
 
     stage('Clone repository') {
@@ -10,7 +10,7 @@ node ("docker") {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        app = docker.build "spring-boot-rest"
+        app = docker.build("spring-boot-rest:${env.BUILD_ID}")
         /*app = docker.build("spring-boot-rest")*/
     }
 
