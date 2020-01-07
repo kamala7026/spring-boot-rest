@@ -11,7 +11,8 @@ node {
        
          /* app = docker.build("spring-boot-rest")
         /*sh docker build -f Dockerfile -t spring-boot-rest*/
-        sh mvn clean package
+        sh mvn clean 
+        sh mvn install
     }
 
     stage('Test image') {
