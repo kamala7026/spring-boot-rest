@@ -1,3 +1,5 @@
+#!groovy
+def k8sDocker = new Docker()
 node {
     def app
 
@@ -9,7 +11,7 @@ node {
     
     stage('Build image') {
        
-          app = docker.build("spring-boot-rest")
+          app = k8sDocker.build("spring-boot-rest")
         /*sh docker build -f Dockerfile -t spring-boot-rest*/
     }
 
@@ -25,7 +27,7 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
+        k8sDocker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
