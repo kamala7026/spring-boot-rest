@@ -1,4 +1,4 @@
-/*node {
+node {
     def app
 
     stage('Clone repository') {
@@ -9,7 +9,8 @@
 
     stage('Build image') {
        
-        app = docker.build("spring-boot-rest:${env.BUILD_ID}")
+        /*app = docker.build("spring-boot-rest:${env.BUILD_ID}")*/
+        sh docker build -f Dockerfile -t spring-boot-rest:${env.BUILD_ID}
       
     }
 
@@ -20,8 +21,8 @@
             sh 'echo "Tests passed"'
         }
     }
-}*/
-pipeline {
+}
+/*pipeline {
     agent any
     stages {
         stage('Clone repository') {
@@ -34,10 +35,9 @@ pipeline {
                 echo 'Starting to build docker image'
 
                 script {
-                    /*def customImage = docker.build("my-image:${env.BUILD_ID}")*/
                     sh docker build -f Dockerfile -t spring-boot-rest
                 }
             }
         }
     }
-}
+}*/
